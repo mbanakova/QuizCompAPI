@@ -14,7 +14,7 @@
           @after-enter="afterEnter"
         >
           <QuizCard
-            v-for="(quiz, index) in quizList"
+            v-for="(quiz, index) in quizes"
             :key="quiz.id"
             :quiz="quiz"
             :data-index="index"
@@ -25,27 +25,30 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { q } from './../data/quizes'
 import { ref, watch } from 'vue'
+import { useQuizListStore } from './../stores/quizList'
 import gsap from 'gsap'
 import QuizCard from '../components/QuizCard.vue'
 
+const quizListStore = useQuizListStore()
 const search = ref('')
-const quizList = ref(q)
-
+const quizes = ref(quizListStore.quizes)
 watch(search, () => {
-  quizList.value = q.filter((quiz) => quiz.name.toLowerCase().includes(search.value.toLowerCase()))
+  quizes.value = quizListStore.quizes.filter((quiz) =>
+    quiz.name.toLowerCase().includes(search.value.toLowerCase())
+  )
 })
 
-const beforeEnter = (elem: any): void => {
+const beforeEnter = (elem) => {
   //card-enter-from
   console.log('before-enter')
   elem.style.opacity = 0
   elem.style.transform = 'translateY(50px)'
 }
 
-const enter = (elem: any): void => {
+const enter = (elem) => {
   //card-enter-to
   console.log('before-enter')
   gsap.to(elem, {

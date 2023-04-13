@@ -29,7 +29,7 @@ defineProps<{
 .progress__bar {
   width: 100%;
   height: 25px;
-  border: 3px solid rgb(171, 164, 233);
+  border: 3px solid $accent;
   margin-bottom: 40px;
 }
 

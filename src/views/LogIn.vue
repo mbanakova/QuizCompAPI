@@ -22,6 +22,7 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from './../stores/user'
+
 const user = reactive({
   name: '',
   age: null,
@@ -49,7 +50,7 @@ const login = () => {
   padding: 20px;
   border-radius: 10px;
   width: 400px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow;
   display: flex;
   flex-direction: column;
   gap: 20px;

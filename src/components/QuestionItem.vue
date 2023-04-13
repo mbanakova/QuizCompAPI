@@ -6,7 +6,7 @@
       class="option"
       v-for="option in question.options"
       :key="option.id"
-      @click="emitSelectedOption(option.isCorrect)"
+      @click="emitSelectedOption(option.isCorrect, option.id)"
     >
       <p class="option__label">{{ option.label }}</p>
       <p class="option__value">
@@ -27,8 +27,8 @@ defineProps<{
   }
 }>()
 
-const emitSelectedOption = (isCorrect: boolean) => {
-  emit('selectOption', isCorrect)
+const emitSelectedOption = (isCorrect: boolean, id: number) => {
+  emit('selectOption', { isCorrect, id })
 }
 </script>
 

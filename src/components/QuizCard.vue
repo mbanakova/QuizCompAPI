@@ -24,13 +24,20 @@ defineProps<{
 <style lang="scss" scoped>
 .card {
   overflow: hidden;
-  border-radius: 2%;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  box-shadow: $shadow;
+  transition: $tr;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .card__link {
   display: block;
+  text-decoration: none;
+  color: $dark;
 }
 
 .card img {
@@ -47,5 +54,6 @@ defineProps<{
 
 .card__header {
   font-weight: bold;
+  color: $accent;
 }
 </style>

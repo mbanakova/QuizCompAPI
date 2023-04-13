@@ -23,13 +23,16 @@ import QuizHeader from './../components/QuizHeader.vue'
 import QuestionItem from './../components/QuestionItem.vue'
 import QuizResult from './../components/QuizResult.vue'
 import { useRoute, RouterView } from 'vue-router'
-import { ref, computed } from 'vue'
-import { q } from './../data/quizes'
+import { useQuizListStore } from './../stores/quizList'
+import { useAnswersStore } from './../stores/answers'
+import { ref, reactive, computed } from 'vue'
 
 const route = useRoute()
+const answersStore = useAnswersStore()
+const quizListStore = useQuizListStore()
 
 const quizId = parseInt(route.params.id)
-const quiz = q.find((q) => q.id === quizId)
+const quiz = quizListStore.quizes.find((q) => q.id === quizId)
 const currentQuestionId = ref(1)
 const correctAnswersNum = ref(0)
 
@@ -49,16 +52,25 @@ const barPercentage = computed(() => {
   }
 })
 const showResults = ref(false)
+const userQuiz = reactive({
+  quizId,
+  userAnswers: []
+})
 
-const onOptionSelected = (isCorrect) => {
+const onOptionSelected = ({ isCorrect, id }) => {
   if (isCorrect) {
     correctAnswersNum.value++
   }
 
   if (quiz.questions.length === currentQuestionId.value) {
     showResults.value = true
+    answersStore.addUserAnswers(userQuiz)
   }
-
+  const answer = {
+    id,
+    isCorrect
+  }
+  userQuiz.userAnswers.push(answer)
   currentQuestionId.value++
 }
 </script>

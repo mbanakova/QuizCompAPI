@@ -14,7 +14,8 @@ export const useUserStore = defineStore('user', {
       name: '',
       age: null,
       isAuthenticated: false
-    }
+    },
+
   }),
   actions: {
     addUser(user) {
