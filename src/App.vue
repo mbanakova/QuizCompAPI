@@ -1,10 +1,10 @@
 <template>
-  <TheNav />
+  <TheHeader />
   <Transition name="router"> <RouterView /> </Transition>
 </template>
 
 <script setup>
-import TheNav from './components/TheNav.vue'
+import TheHeader from './components/TheHeader.vue'
 </script>
 
 <style scoped lang="scss">

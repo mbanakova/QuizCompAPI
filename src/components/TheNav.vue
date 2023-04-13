@@ -1,25 +1,21 @@
 <template>
-	<nav class="nav">
-		<div class="container">
-			<RouterLink active-class="active" class="router-link" to="/">home</RouterLink>
-			<RouterLink active-class="active" class="router-link" to="results">results</RouterLink>
-		</div>
-	</nav>
+  <nav class="nav">
+    <RouterLink active-class="active" class="router-link" to="/">home</RouterLink>
+    <RouterLink active-class="active" class="router-link" to="results">results</RouterLink>
+  </nav>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style scoped>
-.nav {
-	padding: 20px 0;
-	background-color: #86dcf7;
-}
+<style scoped lang="scss">
 .router-link {
-	padding: 5px 10px;
+  padding: 5px 10px;
+  color: $white;
+  text-decoration: none;
+  font-size: 18px;
 }
 .active {
-	font-weight: 900;
-	color: #461041;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <main class="container">
     <header>
-      <h1>Quizes</h1>
-      <input v-model.trim="search" type="text" placeholder="Search..." />
+      <h1>Тесты</h1>
+      <input v-model.trim="search" type="text" placeholder="Поиск..." />
     </header>
 
     <div class="options-container">

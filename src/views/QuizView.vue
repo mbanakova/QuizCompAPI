@@ -1,7 +1,7 @@
 <template>
-  <div class="quiz" v-if="quiz">
+  <main class="container quiz-view" v-if="quiz">
     <QuizHeader :questionStatus="questionStatus" :barPercentage="barPercentage" />
-    <div class="">
+    <div class="question-container">
       <QuestionItem
         v-if="!showResults"
         :question="quiz.questions[currentQuestionId - 1]"
@@ -13,7 +13,7 @@
         :numberOfCorrectAnswers="correctAnswersNum"
       />
     </div>
-  </div>
+  </main>
   <div v-else>quiz {{ route.params.id }} does not exist</div>
   <RouterView />
 </template>
@@ -35,9 +35,9 @@ const correctAnswersNum = ref(0)
 
 const questionStatus = computed(() => {
   if (currentQuestionId.value <= quiz.questions.length) {
-    return `${currentQuestionId.value}/${quiz.questions.length}`
+    return `Вопрос ${currentQuestionId.value} из ${quiz.questions.length}:`
   } else {
-    return `Quiz completed`
+    return `Тест завершён`
   }
 })
 
@@ -64,12 +64,18 @@ const onOptionSelected = (isCorrect) => {
 </script>
 
 <style scoped lang="scss">
-@media (min-width: 1024px) {
-  .quiz {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.question-container {
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.quiz-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

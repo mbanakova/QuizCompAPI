@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.body {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+  color: $dark;
+  background-color: $white;
+  transition: color 0.5s, background-color 0.5s;
+  font-size: 15px;
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1240px;
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+
+  @media (max-width: $tablet) {
+    padding: 0 20px;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 0 15px;
+  }
+}
+
+.button {
+  display: block;
+  background-color: $accent;
+  text-decoration: none;
+  color: $white;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  padding: 8px 25px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+
+  &--pale {
+    background-color: $light;
+  }
+
+  &:hover {
+    background-color: darken($accent, 10%);
+  }
+
+  &:focus {
+    outline: 2px solid #ff3489;
+  }
+}
