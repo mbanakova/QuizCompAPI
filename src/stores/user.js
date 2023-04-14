@@ -6,7 +6,7 @@ export const useUserStore = defineStore('user', () => {
   const user = ref(null)
   const errorMessage = ref('')
   const loading = ref(false)
-  const isAuthenticated = ref(false)
+  const loadingUser = ref(false)
 
   const validateEmail = (email) => {
     return String(email)
@@ -108,14 +108,38 @@ export const useUserStore = defineStore('user', () => {
     }
 
     loading.value = false
-    isAuthenticated.value = true
   }
 
   const handleLogout = () => { }
-  const getUser = () => { }
+
+  const getUser = async () => {
+    loadingUser.value = true
+    const { data } = await supabase.auth.getUser()
+
+    if (!data.user) {
+      loadingUser.value = false
+      return user.value = null
+    }
+
+    const { data: userWithEmail } = await supabase
+      .from('users').select()
+      .eq('email', data.user.email)
+      .single()
+
+    user.value = {
+      id: userWithEmail.id,
+      email: userWithEmail.email,
+      username: userWithEmail.username
+    }
+
+    loadingUser.value = false
+  }
+
+
+
 
   const clearErrorMessage = () => {
     errorMessage.value = ''
   }
-  return { user, loading, handleLogin, handleSignup, handleLogout, getUser, errorMessage, clearErrorMessage }
+  return { user, loading, loadingUser, handleLogin, handleSignup, handleLogout, getUser, errorMessage, clearErrorMessage }
 })

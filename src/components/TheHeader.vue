@@ -2,10 +2,10 @@
   <header class="header">
     <div class="container header__container">
       <TheNav />
-      <div class="header__auth">
-        <button class="button button--pale" @click="isLogin">Вход</button>
-        <button class="button" @click="isSignUp">Регистрация</button>
-        <button class="button" @click="logout" v-if="isAuthenticated">Выйти</button>
+      <div class="header__auth" v-if="!loadingUser">
+        <button class="button button--pale" @click="isLogin" v-if="!user">Вход</button>
+        <button class="button" @click="isSignUp" v-if="!user">Регистрация</button>
+        <button class="button" @click="logout" v-if="user">Выйти</button>
       </div>
     </div>
     <ModalWindow :modalTitle="modalTitle" :isLogin="login" />
@@ -22,7 +22,7 @@ import ModalWindow from './ModalWindow.vue'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
-const { isAuthenticated } = storeToRefs(userStore)
+const { user, loadingUser } = storeToRefs(userStore)
 const modalTitle = ref('')
 const login = ref(false)
 
@@ -44,6 +44,7 @@ const isSignUp = () => {
   background-color: $accent;
   color: $white;
   position: relative;
+  min-height: 77px;
 }
 
 .header__container {
