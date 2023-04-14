@@ -5,7 +5,7 @@
       <div class="header__auth" v-if="!loadingUser">
         <button class="button button--pale" @click="isLogin" v-if="!user">Вход</button>
         <button class="button" @click="isSignUp" v-if="!user">Регистрация</button>
-        <button class="button" @click="logout" v-if="user">Выйти</button>
+        <button class="button" @click="userStore.handleLogout()" v-if="user">Выйти</button>
       </div>
     </div>
     <ModalWindow :modalTitle="modalTitle" :isLogin="login" />

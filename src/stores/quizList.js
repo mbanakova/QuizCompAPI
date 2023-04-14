@@ -16,13 +16,13 @@ export const useQuizListStore = defineStore('quizList', {
                 id: 1,
                 label: 'A',
                 text: '16',
-                isCorrect: true
+                isCorrect: false
               },
               {
                 id: 2,
                 label: 'B',
                 text: '1',
-                isCorrect: false
+                isCorrect: true
               },
               {
                 id: 3,
@@ -40,7 +40,7 @@ export const useQuizListStore = defineStore('quizList', {
           },
           {
             id: 2,
-            text: 'sqrt(64) * 9',
+            text: '√64 * 9',
             options: [
               {
                 id: 1,
@@ -107,37 +107,37 @@ export const useQuizListStore = defineStore('quizList', {
         questions: [
           {
             id: 1,
-            text: 'The Kreb Cycles occurs in the',
+            text: 'Цикл Кребса происходит в',
             options: [
               {
                 id: 1,
                 label: 'A',
-                text: 'Mitochondria',
+                text: 'митохондриях',
                 isCorrect: true
               },
               {
                 id: 2,
                 label: 'B',
-                text: 'Nucleus',
+                text: 'ядре',
                 isCorrect: false
               },
               {
                 id: 3,
                 label: 'C',
-                text: 'Rough ER',
+                text: 'аппарате Гольджи',
                 isCorrect: false
               },
               {
                 id: 4,
                 label: 'D',
-                text: 'Cystol',
+                text: 'цитоплазме',
                 isCorrect: false
               }
             ]
           },
           {
             id: 2,
-            text: 'How many oxygen molecules can hemoglobin hold',
+            text: 'Сколько молекул кислорода удерживает гемоглобин?',
             options: [
               {
                 id: 1,
@@ -167,30 +167,30 @@ export const useQuizListStore = defineStore('quizList', {
           },
           {
             id: 3,
-            text: 'The cones see ___ while the rods see ___',
+            text: 'Колбочки воспринимают ___ , а палочки — ___',
             options: [
               {
                 id: 1,
                 label: 'A',
-                text: 'black and white; color',
+                text: 'яркость; цвет',
                 isCorrect: false
               },
               {
                 id: 2,
                 label: 'B',
-                text: 'color; black and white',
+                text: 'цвет; яркость',
                 isCorrect: true
               },
               {
                 id: 3,
                 label: 'C',
-                text: '3D objects; 2D shapes',
+                text: '3D объекты; 2D объекты',
                 isCorrect: false
               },
               {
                 id: 4,
                 label: 'D',
-                text: '2D shapes; 3D objects',
+                text: '2D объекты; 3D объекты',
                 isCorrect: false
               }
             ]
