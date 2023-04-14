@@ -234,7 +234,7 @@ export const useQuizListStore = defineStore('quizList', {
           },
           {
             id: 2,
-            text: "Каким символом обознаается калий?",
+            text: "Каким символом обозначается калий?",
             options: [
               {
                 id: 1,

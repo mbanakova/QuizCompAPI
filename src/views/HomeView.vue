@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-import { q } from './../data/quizes'
 import { ref, watch } from 'vue'
 import { useQuizListStore } from './../stores/quizList'
 import gsap from 'gsap'
@@ -43,14 +42,12 @@ watch(search, () => {
 
 const beforeEnter = (elem) => {
   //card-enter-from
-  console.log('before-enter')
   elem.style.opacity = 0
   elem.style.transform = 'translateY(50px)'
 }
 
 const enter = (elem) => {
   //card-enter-to
-  console.log('before-enter')
   gsap.to(elem, {
     y: 0,
     opacity: 1,
@@ -61,7 +58,6 @@ const enter = (elem) => {
 
 const afterEnter = () => {
   //card-enter-active
-  console.log('before-enter')
 }
 </script>
 

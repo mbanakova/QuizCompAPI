@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuizListStore } from './../stores/quizList'
 import { useAnswersStore } from './../stores/answers'

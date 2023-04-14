@@ -1,7 +1,8 @@
 <template>
   <nav class="nav">
-    <RouterLink active-class="active" class="router-link" to="/">home</RouterLink>
-    <RouterLink active-class="active" class="router-link" to="results">results</RouterLink>
+    <RouterLink active-class="active" class="router-link" to="/">Авторизация</RouterLink>
+    <RouterLink active-class="active" class="router-link" to="/quizlist">Тесты</RouterLink>
+    <RouterLink active-class="active" class="router-link" to="/results">Результаты</RouterLink>
   </nav>
 </template>
 
