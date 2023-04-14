@@ -9,7 +9,6 @@ export const useAnswersStore = defineStore('answers', {
         id: '432',
         quiz: 'Химия',
         username: 'Вася',
-        userage: 65,
         totalQuestions: 3,
         correctAnswers: 2
       }

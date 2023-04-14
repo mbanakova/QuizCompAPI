@@ -9,7 +9,6 @@
           <th class="selected">Правильных ответов:</th>
           <th class="">Неправильных ответов:</th>
           <th class="">Время:</th>
-          <th class="">Возраст:</th>
         </tr>
       </thead>
       <tbody class="results__body">
@@ -29,7 +28,6 @@
             }}%)
           </td>
           <td>119 cек.</td>
-          <td>{{ data.userage }}</td>
         </tr>
       </tbody>
     </table>

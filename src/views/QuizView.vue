@@ -27,7 +27,7 @@ import QuizResult from './../components/QuizResult.vue'
 import { useRoute, RouterView } from 'vue-router'
 import { useQuizListStore } from './../stores/quizList'
 import { useAnswersStore } from './../stores/answers'
-import { useUserStore } from './../stores/user'
+import { useUserStore } from '../stores/user'
 import { ref, reactive, computed } from 'vue'
 
 const route = useRoute()
@@ -64,8 +64,7 @@ const userQuiz = reactive({
 const userAttempt = reactive({
   id: Math.random().toString(16).slice(2),
   quiz: quiz.name,
-  username: userStore.user.name,
-  userage: userStore.user.age,
+  username: userStore.user.username,
   totalQuestions: quiz.questions.length,
   correctAnswers: correctAnswersNum.value
 })

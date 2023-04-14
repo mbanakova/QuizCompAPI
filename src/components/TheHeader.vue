@@ -2,23 +2,39 @@
   <header class="header">
     <div class="container header__container">
       <TheNav />
-      <p v-if="userStore.user.isAuthenticated" class="header__user">
-        Привет, {{ userStore.user.name }}
-      </p>
-      <button v-if="userStore.user.isAuthenticated" class="button" @click="logout">Выйти</button>
+      <div class="header__auth">
+        <button class="button button--pale" @click="isLogin">Вход</button>
+        <button class="button" @click="isSignUp">Регистрация</button>
+        <button class="button" @click="logout" v-if="isAuthenticated">Выйти</button>
+      </div>
     </div>
+    <ModalWindow :modalTitle="modalTitle" :isLogin="login" />
   </header>
 </template>
 
 <script setup>
-import TheNav from './TheNav.vue'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from './../stores/app'
 import { useUserStore } from './../stores/user'
+import TheNav from './TheNav.vue'
+import ModalWindow from './ModalWindow.vue'
+
+const appStore = useAppStore()
 const userStore = useUserStore()
-const router = useRouter()
-const logout = () => {
-  userStore.user.isAuthenticated = false
-  router.push({ name: 'login' })
+const { isAuthenticated } = storeToRefs(userStore)
+const modalTitle = ref('')
+const login = ref(false)
+
+const isLogin = () => {
+  appStore.toggleModalAuth()
+  modalTitle.value = 'Вход'
+  login.value = true
+}
+
+const isSignUp = () => {
+  appStore.toggleModalAuth()
+  modalTitle.value = 'Регистрация'
 }
 </script>
 
@@ -27,6 +43,7 @@ const logout = () => {
   padding: 20px 0;
   background-color: $accent;
   color: $white;
+  position: relative;
 }
 
 .header__container {
@@ -34,7 +51,10 @@ const logout = () => {
   justify-content: space-between;
   align-items: center;
 }
-
+.header__auth {
+  display: flex;
+  gap: 10px;
+}
 .header__user {
   margin: 0;
 }
