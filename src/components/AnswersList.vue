@@ -1,6 +1,6 @@
 <template>
   <ul class="user__results">
-    <li class="total-list card" v-for="question in quiz.questions" :key="question.id">
+    <li class="total-list card" v-for="(question, i) in quiz.questions" :key="question.id">
       <div class="top">
         <h3>{{ question.id }}. {{ question.text }}</h3>
       </div>
@@ -12,30 +12,53 @@
         v-for="option in question.options"
         :key="option.id"
       >
+        <!-- <pre>{{ percent(statistics[i], statistics[i][index]) }}</pre> -->
         <div class="percent-bar" style="width: 30.7692%"></div>
         <div class="z-layer">
           {{ option.text }}
           <span v-if="option.id === userAnswers[question.id - 1].id">✓</span>
         </div>
-        <div class="z-layer">Ответили: 12</div>
+        <div class="z-layer">Ответили: {{ statistics[i] }}</div>
       </div>
     </li>
   </ul>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuizListStore } from './../stores/quizList'
 import { useAnswersStore } from './../stores/answers'
+import { useStatisticsStore } from './../stores/statistics.js'
 
 const quizListStore = useQuizListStore()
 const answersStore = useAnswersStore()
+const statisticsStore = useStatisticsStore()
+
 const route = useRoute()
+const statistics = ref([])
 
 const quizes = quizListStore.quizes
-const quiz = quizes.find((quiz) => quiz.id === parseInt(route.params.id))
+const quizId = parseInt(route.params.id)
+const quiz = quizes.find((quiz) => quiz.id === quizId)
 
 const userAnswers = answersStore.answers.userAnswers
+
+onMounted(async () => {
+  console.log('stats gonna load')
+  await statisticsStore.getStatistics(quizId)
+  console.log('stats loaded')
+  statistics.value = statisticsStore.statistics
+})
+
+// const percent = (arr, picked) => {
+//   const total = arr.reduce((prev, curr) => {
+//     return prev + curr
+//   })
+//   const width = total / picked
+
+//   return width
+// }
 </script>
 
 <style scoped lang="scss">

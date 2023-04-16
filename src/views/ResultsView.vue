@@ -32,6 +32,8 @@
         </tr>
       </tbody>
     </table>
+    <!-- <button @click="loadStats">click</button>
+    <pre>{{ statistics }}</pre> -->
   </main>
 </template>
 
