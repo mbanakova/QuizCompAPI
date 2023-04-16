@@ -4,7 +4,7 @@
       Правильных ответов: {{ numberOfCorrectAnswers }}/{{ quizQuestionLength }}
     </h3>
     <div class="result__buttons">
-      <RouterLink class="button button--pale" to="/quizlist">К списку тестов</RouterLink>
+      <RouterLink class="button button--pale" to="/">К списку тестов</RouterLink>
       <button v-if="!openAnswers" class="button" @click="viewAnswers">Открыть ответы</button>
     </div>
     <TransitionGroup name="answers">

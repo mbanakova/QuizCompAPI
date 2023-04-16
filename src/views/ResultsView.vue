@@ -1,7 +1,8 @@
 <template>
   <main class="results container">
     <h1 class="results__title">Таблица результатов</h1>
-    <table class="results__table">
+    <LoadingSpinner v-if="loading" />
+    <table class="results__table" v-else>
       <thead class="results__head">
         <tr>
           <th>Участник:</th>
@@ -36,9 +37,19 @@
 
 <script setup>
 import { useAnswersStore } from './../stores/answers'
+import { onMounted, ref } from 'vue'
+import LoadingSpinner from './../components/LoadingSpinner.vue'
 
 const answersStore = useAnswersStore()
-const tableData = answersStore.stats
+const tableData = ref([])
+const loading = ref(false)
+
+onMounted(async () => {
+  loading.value = true
+  await answersStore.getAnswers()
+  loading.value = false
+  tableData.value = answersStore.answers
+})
 </script>
 
 <style lang="scss">

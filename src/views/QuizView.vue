@@ -62,7 +62,7 @@ const userQuiz = reactive({
 })
 
 const userAttempt = reactive({
-  id: Math.random().toString(16).slice(2),
+  // id: Math.random().toString(16).slice(2),
   quiz: quiz.name,
   username: userStore.user.username,
   totalQuestions: quiz.questions.length,
