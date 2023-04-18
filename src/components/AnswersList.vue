@@ -9,23 +9,23 @@
         :class="{
           correct: option.isCorrect
         }"
-        v-for="option in question.options"
+        v-for="(option, k) in question.options"
         :key="option.id"
       >
         <!-- <pre>{{ percent(statistics[i], statistics[i][index]) }}</pre> -->
-        <div class="percent-bar" style="width: 30.7692%"></div>
+        <div class="percent-bar" :style="`width: ${(statistics[i][k] / total[i]) * 100}%`"></div>
         <div class="z-layer">
+          <span v-if="option.id === userAnswers[question.id - 1].id">◉</span>
           {{ option.text }}
-          <span v-if="option.id === userAnswers[question.id - 1].id">✓</span>
         </div>
-        <div class="z-layer">Ответили: {{ statistics[i] }}</div>
+        <div class="z-layer">Ответили: {{ statistics[i][k] }}</div>
       </div>
     </li>
   </ul>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuizListStore } from './../stores/quizList'
 import { useAnswersStore } from './../stores/answers'
@@ -37,6 +37,7 @@ const statisticsStore = useStatisticsStore()
 
 const route = useRoute()
 const statistics = ref([])
+const total = ref([])
 
 const quizes = quizListStore.quizes
 const quizId = parseInt(route.params.id)
@@ -44,11 +45,21 @@ const quiz = quizes.find((quiz) => quiz.id === quizId)
 
 const userAnswers = answersStore.answers.userAnswers
 
-onMounted(async () => {
+onBeforeMount(async () => {
   console.log('stats gonna load')
   await statisticsStore.getStatistics(quizId)
   console.log('stats loaded')
   statistics.value = statisticsStore.statistics
+  console.log('stats ' + statistics.value)
+  statistics.value.forEach((element) => {
+    const result = element.reduce((prev, curr) => {
+      return prev + curr
+    })
+
+    total.value.push(result)
+  })
+
+  console.log('total ' + total.value)
 })
 
 // const percent = (arr, picked) => {

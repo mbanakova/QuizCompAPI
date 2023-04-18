@@ -20,12 +20,14 @@ export const useStatisticsStore = defineStore('statistics', () => {
 
     const arr = []
 
-    data.forEach(index => {
-      arr.push(Object.values(index))
-    })
-    statistics.value = arr
-    console.log(statistics.value);
-    return statistics
+    if (data) {
+      data.forEach(index => {
+        arr.push(Object.values(index))
+      })
+      statistics.value = arr
+      console.log("statistics " + statistics.value);
+      return statistics
+    } else return 'no data'
   }
 
 
